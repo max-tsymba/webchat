@@ -4,11 +4,17 @@ import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import { IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
-const Navigation: React.FunctionComponent = () => {
+export interface INavigationProps {
+  onShowDashboard?: any;
+}
+
+const Navigation: React.FunctionComponent<INavigationProps> = ({
+  onShowDashboard,
+}) => {
   return (
     <div className={styles.navigation}>
       <div className={styles.navigation__button}>
-        <IconButton>
+        <IconButton onClick={() => onShowDashboard(true)}>
           <MenuIcon />
         </IconButton>
       </div>

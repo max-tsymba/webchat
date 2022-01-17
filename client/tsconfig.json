@@ -15,8 +15,6 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@/public/*": ["./public/*"],
       "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"]
     },
     "incremental": true
@@ -29,10 +27,5 @@
     "webpack",
     "webpack.config.ts"
   ],
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "webpack.config.js",
-    "webpack.config.js",
-  ]
+  "include": ["**/*.ts", "**/*.tsx", "webpack.config.js", "webpack.config.js"]
 }
