@@ -1,8 +1,9 @@
 import React from 'react'
+import styles from './styles.module.scss'
 
 const Navigation: React.FunctionComponent = () => {
     return (
-        <div>
+        <div className={styles.navigation}>
             Navigation
         </div>
     )
