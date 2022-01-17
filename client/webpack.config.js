@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
@@ -18,9 +18,13 @@ module.exports = {
     },
     resolve: {
         extensions: ['.jsx', '.js', '.tsx', '.ts'],
+        alias: {
+            components: path.resolve(__dirname, 'src/components/'),
+            api: path.resolve(__dirname, 'src/api/'),
+          },
     },
     plugins: [
-        new HTMLWebpackPlugin({ template: "./src/public/index.html" }),
+        new HTMLWebpackPlugin({template: "./src/public/index.html"}),
         new CleanWebpackPlugin(),
         new ESLintPlugin({
             extensions: ["js", "jsx", "ts", "tsx"],
@@ -31,9 +35,9 @@ module.exports = {
             {
                 test: /\.(css|scss)$/,
                 use: [
-                    "style-loader",
-                    "css-loader",
-                    "sass-loader",
+                    "style-loader", 
+                    "css-loader", 
+                    "sass-loader"
                 ]
             },
             {
