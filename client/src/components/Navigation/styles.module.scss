@@ -1,0 +1,43 @@
+.navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0.05;
+  background-color: #0e0e13;
+}
+
+.navigation__button {
+  width: 100%;
+
+  button {
+    display: flex;
+    flex-direction: column;
+    height: 70px;
+    width: 70px;
+    margin: 0 auto;
+    color: rgb(170, 170, 170);
+    &:hover {
+      background-color: transparent !important;
+    }
+  }
+
+  &:nth-child(1) {
+    button {
+      height: 60px;
+      width: 60px;
+    }
+  }
+}
+
+.active {
+  background-color: #22222d;
+}
+
+.navigation__button_info {
+  margin-top: 5px;
+  font-family: 'Roboto';
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+}

@@ -13,7 +13,7 @@ module.exports = {
         publicPath: '/',
     },
     devServer: {
-        port: 4000,
+        port: 3000,
         historyApiFallback: true,
     },
     resolve: {
@@ -21,6 +21,7 @@ module.exports = {
         alias: {
             components: path.resolve(__dirname, 'src/components/'),
             api: path.resolve(__dirname, 'src/api/'),
+            '@mui/styled-engine': '@mui/styled-engine-sc',
           },
     },
     plugins: [
