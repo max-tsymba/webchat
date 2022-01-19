@@ -4,6 +4,12 @@ import styles from './styles.module.scss';
 import { IconButton } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import classNames from 'classnames';
+import DashboardLink from '../DashboardLink';
+import EditIcon from '@mui/icons-material/Edit';
+import FolderOpenIcon from '@mui/icons-material/FolderOpen';
+import SettingsIcon from '@mui/icons-material/Settings';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import HttpsIcon from '@mui/icons-material/Https';
 
 export interface IDasboardProps {
   onShow?: boolean;
@@ -39,6 +45,7 @@ const Dashboard: React.FunctionComponent<IDasboardProps> = ({
             <MoreVertIcon />
           </IconButton>
         </div>
+
         <div className={styles.dashboard__header}>
           <div className={styles.dashboard__avatar}>
             <Avatar
@@ -48,6 +55,28 @@ const Dashboard: React.FunctionComponent<IDasboardProps> = ({
           </div>
           <div className={styles.dashboard__name}>Username</div>
           <div className={styles.dashboard__phone}>+380 00 000 00 00</div>
+        </div>
+
+        <div className={styles.dashboard__menu}>
+          <DashboardLink text="Edit Profile">
+            <EditIcon />
+          </DashboardLink>
+
+          <DashboardLink text="Chat Folders">
+            <FolderOpenIcon />
+          </DashboardLink>
+
+          <DashboardLink text="General Settings">
+            <SettingsIcon />
+          </DashboardLink>
+
+          <DashboardLink text="Notifications and Sounds">
+            <NotificationsIcon />
+          </DashboardLink>
+
+          <DashboardLink text="Privacy and Security">
+            <HttpsIcon />
+          </DashboardLink>
         </div>
       </div>
     </div>
