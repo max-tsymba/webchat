@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { SetStateAction } from 'react';
 import styles from './styles.module.scss';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import { IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
 export interface INavigationProps {
-  onShowDashboard?: any;
+  onShowDashboard?: React.Dispatch<SetStateAction<boolean>>;
 }
 
 const Navigation: React.FunctionComponent<INavigationProps> = ({
@@ -14,7 +14,11 @@ const Navigation: React.FunctionComponent<INavigationProps> = ({
   return (
     <div className={styles.navigation}>
       <div className={styles.navigation__button}>
-        <IconButton onClick={() => onShowDashboard(true)}>
+        <IconButton
+          onClick={() => {
+            if (onShowDashboard) onShowDashboard(true);
+          }}
+        >
           <MenuIcon />
         </IconButton>
       </div>

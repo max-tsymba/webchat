@@ -1,5 +1,5 @@
 import { Avatar } from '@mui/material';
-import React from 'react';
+import React, { SetStateAction } from 'react';
 import styles from './styles.module.scss';
 import { IconButton } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -8,7 +8,7 @@ import classNames from 'classnames';
 export interface IDasboardProps {
   onShow?: boolean;
   className?: string;
-  onShowDashboard?: any;
+  onShowDashboard?: React.Dispatch<SetStateAction<boolean>>;
 }
 
 const Dashboard: React.FunctionComponent<IDasboardProps> = ({
@@ -16,16 +16,16 @@ const Dashboard: React.FunctionComponent<IDasboardProps> = ({
   className,
   onShowDashboard,
 }) => {
-  const dashboardClasses = classNames([
+  const dashboardClasses: string = classNames([
     styles.overlay,
     onShow && styles.active,
     className,
   ]);
+
   const handleCloseDashboard = (e: any) => {
     e.preventDefault();
-    console.log(e.target);
     if (e.target.className === dashboardClasses) {
-      onShowDashboard(false);
+      if (onShowDashboard) onShowDashboard(false);
     }
   };
   return (

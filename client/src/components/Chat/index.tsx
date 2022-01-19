@@ -7,7 +7,7 @@ export interface IChatProps {
 }
 
 const Chat: React.FunctionComponent<IChatProps> = ({ className }) => {
-  const chatClasses = classNames([styles.chat, className]);
+  const chatClasses: string = classNames([styles.chat, className]);
   return <div className={chatClasses}>Chat</div>;
 };
 
