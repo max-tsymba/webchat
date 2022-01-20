@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles.module.scss';
 import { Avatar } from '@mui/material';
 
-const SidebarChat = () => {
+const SidebarChat: React.FunctionComponent = () => {
   return (
     <div className={styles.chat}>
       <Avatar

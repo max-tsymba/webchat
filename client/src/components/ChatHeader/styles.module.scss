@@ -1,0 +1,48 @@
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.header__utils {
+  margin-left: auto;
+}
+
+.header__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  padding-left: 1.125rem;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.header__content_title {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: inline-block;
+  line-height: 1.2;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+.header__content_time {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: inline-block;
+  line-height: 1.2;
+  color: #aaaaaa;
+  font-size: 0.875rem;
+}
+
+.header__utils {
+  button {
+    color: #aaaaaa;
+
+    &:nth-child(2) {
+      margin-left: 0.5rem;
+    }
+  }
+}
