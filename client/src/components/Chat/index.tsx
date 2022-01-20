@@ -14,7 +14,7 @@ const Chat: React.FunctionComponent<IChatProps> = ({ className }) => {
       <div className={styles.chat__header}>
         <ChatHeader />
       </div>
-      <div className={styles.chat__content}>Chat Cotent</div>
+      <div className={styles.chat__body}>Chat Cotent</div>
       <div className={styles.chat__area}>Chat Text Area</div>
     </div>
   );
