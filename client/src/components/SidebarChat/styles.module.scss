@@ -1,0 +1,57 @@
+.chat {
+  display: flex;
+  height: 70px;
+  align-items: center;
+  cursor: pointer;
+  padding: 0 15px;
+  overflow: hidden;
+  font-family: 'Roboto';
+  transition: 0.3s all;
+
+  &:hover {
+    background-color: #2f2f2f;
+  }
+}
+
+.chat__info {
+  overflow: hidden;
+  color: #aaaaaa;
+  position: relative;
+  flex: 1 1 auto;
+  padding: 4px 8px;
+}
+
+.chat__title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.chat__name {
+  flex-grow: 1;
+  overflow: hidden;
+  color: #fff;
+  text-overflow: ellipsis;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.chat__time {
+  font-size: 0.75rem;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #aaaaaa;
+}
+
+.chat__message_solo {
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.6;
+  font-size: 16px;
+  color: #aaaaaa;
+}
