@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
+import ChatBody from '../ChatBody';
 import ChatHeader from '../ChatHeader';
 import styles from './styles.module.scss';
 
@@ -14,8 +15,8 @@ const Chat: React.FunctionComponent<IChatProps> = ({ className }) => {
       <div className={styles.chat__header}>
         <ChatHeader />
       </div>
-      <div className={styles.chat__body}>Chat Cotent</div>
-      <div className={styles.chat__area}>Chat Text Area</div>
+      <ChatBody />
+      {/* <div className={styles.chat__area}>Chat Text Area</div> */}
     </div>
   );
 };
