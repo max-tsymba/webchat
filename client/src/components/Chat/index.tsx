@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 import ChatBody from '../ChatBody';
 import ChatHeader from '../ChatHeader';
+import MessageInput from '../MessageInput';
 import styles from './styles.module.scss';
 
 export interface IChatProps {
@@ -16,7 +17,7 @@ const Chat: React.FunctionComponent<IChatProps> = ({ className }) => {
         <ChatHeader />
       </div>
       <ChatBody />
-      {/* <div className={styles.chat__area}>Chat Text Area</div> */}
+      <MessageInput />
     </div>
   );
 };
