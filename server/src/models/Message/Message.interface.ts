@@ -6,4 +6,6 @@ interface IMessage {
   received: boolean;
 }
 
-export interface IMessageDocument extends Document, IMessage {}
+export interface IMessageDocument extends Document, IMessage {
+  [x: string]: any;
+}

@@ -1,14 +1,19 @@
+import MessageDto, { IMessageDto } from '../dtos/message.dto';
 import { MessageModel } from '../models/Message/Message';
+import { IMessageDocument } from '../models/Message/Message.interface';
 
 class MessageService {
   async create(message: string, username: string, received: boolean) {
-    const newMessage = await MessageModel.create({
+    const newMessage: IMessageDocument = new MessageModel({
       message,
       username,
       received,
     });
+    await newMessage.save();
+
+    const messageDto: IMessageDto = new MessageDto(newMessage);
     return {
-      newMessage,
+      ...messageDto,
     };
   }
 }

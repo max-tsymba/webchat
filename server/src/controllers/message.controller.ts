@@ -1,4 +1,5 @@
 import express from 'express';
+import { IMessageDto } from '../dtos/message.dto';
 import messageService from '../service/messageService';
 
 class MessageController {
@@ -14,7 +15,7 @@ class MessageController {
         received,
       }: { message: string; username: string; received: boolean } = req.body;
 
-      const messageData: any = await messageService.create(
+      const messageData: IMessageDto = await messageService.create(
         message,
         username,
         received,
