@@ -11,6 +11,18 @@ dotenv.config({ path: path.resolve(__dirname, 'configs', '.env') });
 const app: express.Express = express();
 const PORT: number = +process.env.PORT || 6000;
 const DB_URL: string = process.env.DB_URL;
+const db: mongoose.Connection = mongoose.connection;
+
+db.once('open', () => {
+  console.log('db connected');
+
+  const msgCollection: mongoose.Collection = db.collection('messages');
+  const changeStream: any = msgCollection.watch();
+
+  changeStream.on('change', (change) => {
+    console.log(change);
+  });
+});
 
 app.use(express.json());
 app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
@@ -22,6 +34,7 @@ const start: CallbackStartFunction = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     } as ConnectOptions);
+
     app.listen(PORT, () => console.log('Worked ' + PORT));
   } catch (e: unknown) {
     console.log(e);
