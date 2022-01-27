@@ -4,9 +4,9 @@ import dotenv from 'dotenv';
 import path from 'path';
 import cors from 'cors';
 import messageRouter from './routes/message.router';
+import { CallbackStartFunction } from './utils/types';
 
 dotenv.config({ path: path.resolve(__dirname, 'configs', '.env') });
-type CallbackStartFunction = () => Promise<void>;
 
 const app: express.Express = express();
 const PORT: number = +process.env.PORT || 6000;
