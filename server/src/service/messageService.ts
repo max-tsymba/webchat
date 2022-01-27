@@ -1,9 +1,16 @@
 import MessageDto, { IMessageDto } from '../dtos/message.dto';
 import { MessageModel } from '../models/Message/Message';
-import { IMessageDocument } from '../models/Message/Message.interface';
+import {
+  IMessage,
+  IMessageDocument,
+} from '../models/Message/Message.interface';
 
 class MessageService {
-  async create(message: string, username: string, received: boolean) {
+  async create({
+    message,
+    username,
+    received,
+  }: IMessage): Promise<IMessageDto> {
     const newMessage: IMessageDocument = new MessageModel({
       message,
       username,
@@ -15,6 +22,11 @@ class MessageService {
     return {
       ...messageDto,
     };
+  }
+
+  async sync(): Promise<IMessageDocument[]> {
+    const messages: IMessageDocument[] = await MessageModel.find();
+    return messages;
   }
 }
 

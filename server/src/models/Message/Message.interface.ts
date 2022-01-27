@@ -1,6 +1,6 @@
 import mongoose, { Document } from 'mongoose';
 
-interface IMessage {
+export interface IMessage {
   message: string;
   username: string;
   received: boolean;
