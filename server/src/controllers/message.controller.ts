@@ -4,7 +4,7 @@ import {
   IMessageDocument,
 } from '../models/Message/Message.interface';
 import messageService from '../service/messageService';
-import { TArrowControllerFunction } from '../utils/interfaces';
+import { TArrowControllerFunction } from '../utils/types';
 
 class MessageController {
   create: TArrowControllerFunction = async (req, res, next) => {
