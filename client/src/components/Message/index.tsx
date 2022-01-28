@@ -9,11 +9,13 @@ const defaultProps: IMessageProps = {
 export interface IMessageProps {
   children?: React.ReactNode | string;
   isCurrentUser?: boolean;
+  timestamp?: string;
 }
 
 const Message: React.FunctionComponent<IMessageProps> = ({
   children,
   isCurrentUser,
+  timestamp,
 }): React.ReactElement => {
   const messageClasses: string = classNames([
     styles.chat__message,
@@ -22,7 +24,7 @@ const Message: React.FunctionComponent<IMessageProps> = ({
   return (
     <p className={messageClasses}>
       {children}
-      <span className={styles.chat__timestamp}>{new Date().toUTCString()}</span>
+      <span className={styles.chat__timestamp}>{timestamp}</span>
     </p>
   );
 };

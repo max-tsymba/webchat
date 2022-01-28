@@ -47,7 +47,7 @@ const App = (): React.ReactElement => {
       <Dashboard onShow={showDashboard} onShowDashboard={setShowDashboard} />
       <Navigation onShowDashboard={setShowDashboard} />
       <Sidebar />
-      <Chat className="chat" />
+      <Chat className="chat" messages={messages} />
     </div>
   );
 };

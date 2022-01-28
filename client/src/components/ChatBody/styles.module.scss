@@ -4,4 +4,18 @@
   background-position: center;
   overflow-y: auto;
   padding: 20px;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(90, 90, 90);
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
 }

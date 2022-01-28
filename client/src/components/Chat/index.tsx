@@ -7,10 +7,12 @@ import styles from './styles.module.scss';
 
 export interface IChatProps {
   className?: string;
+  messages?: any[];
 }
 
 const Chat: React.FunctionComponent<IChatProps> = ({
   className,
+  messages,
 }): React.ReactElement => {
   const chatClasses: string = classNames([styles.chat, className]);
   return (
@@ -18,7 +20,8 @@ const Chat: React.FunctionComponent<IChatProps> = ({
       <div className={styles.chat__header}>
         <ChatHeader />
       </div>
-      <ChatBody />
+      <ChatBody messages={messages} />
+
       <MessageInput />
     </div>
   );

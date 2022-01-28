@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Message from '../Message';
 import styles from './styles.module.scss';
 
-const ChatBody: React.FunctionComponent = (): React.ReactElement => {
+export interface IChatBodyProps {
+  messages?: any[];
+}
+
+const ChatBody: React.FunctionComponent<IChatBodyProps> = ({
+  messages,
+}): React.ReactElement => {
+  const refMessageEnd: React.RefObject<HTMLDivElement> =
+    useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = (): void => {
+    refMessageEnd.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect((): void => {
+    scrollToBottom();
+  }, [messages]);
+
   return (
     <div
       className={styles.chat}
@@ -10,9 +27,17 @@ const ChatBody: React.FunctionComponent = (): React.ReactElement => {
         backgroundImage: `url(https://wallpaperaccess.com/full/1725723.jpg)`,
       }}
     >
-      <Message>This is message</Message>
-      <Message>This is message</Message>
-      <Message isCurrentUser>This is message</Message>
+      {console.log(messages)}
+      {messages?.map((data: any) => (
+        <Message
+          isCurrentUser={data.received}
+          timestamp={data.createdAt}
+          key={data._id}
+        >
+          {data.message}
+        </Message>
+      ))}
+      <div ref={refMessageEnd}></div>
     </div>
   );
 };
