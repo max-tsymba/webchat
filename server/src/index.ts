@@ -5,6 +5,7 @@ import path from 'path';
 import cors from 'cors';
 import messageRouter from './routes/message.router';
 import { CallbackStartFunction } from './utils/types';
+import { pusher } from './configs/pusher.config';
 
 dotenv.config({ path: path.resolve(__dirname, 'configs', '.env') });
 
@@ -21,6 +22,16 @@ db.once('open', () => {
 
   changeStream.on('change', (change) => {
     console.log(change);
+
+    if (change.operationType === 'insert') {
+      const messageDetails: any = change.fullDocument;
+      pusher.trigger('messages', 'inserted', {
+        username: messageDetails.username,
+        message: messageDetails.message,
+      });
+    } else {
+      console.log('Error');
+    }
   });
 });
 
