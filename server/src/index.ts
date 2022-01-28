@@ -28,6 +28,8 @@ db.once('open', () => {
       pusher.trigger('messages', 'inserted', {
         username: messageDetails.username,
         message: messageDetails.message,
+        received: messageDetails.received,
+        createdAt: messageDetails.createdAt,
       });
     } else {
       console.log('Error');
