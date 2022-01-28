@@ -1,0 +1,30 @@
+.main {
+  height: 75px;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-size: 18px;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.nextBtn {
+  margin-left: auto;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 13px;
+  line-height: 1.2;
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  svg {
+    color: #fff;
+    margin-left: 5px;
+  }
+}
