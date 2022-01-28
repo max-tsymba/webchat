@@ -14,7 +14,7 @@ export interface IMessageProps {
 const Message: React.FunctionComponent<IMessageProps> = ({
   children,
   isCurrentUser,
-}) => {
+}): React.ReactElement => {
   const messageClasses: string = classNames([
     styles.chat__message,
     isCurrentUser && styles.chat__reciever,

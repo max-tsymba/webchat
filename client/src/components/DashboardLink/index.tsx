@@ -10,7 +10,7 @@ export interface IDashboardLinkProps {
 const DashboardLink: React.FunctionComponent<IDashboardLinkProps> = ({
   children,
   text,
-}) => {
+}): React.ReactElement => {
   return (
     <div className={styles.link}>
       <IconButton>

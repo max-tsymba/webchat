@@ -6,7 +6,7 @@ import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt
 import SendIcon from '@mui/icons-material/Send';
 import autosize from 'autosize';
 
-const MessageInput = () => {
+const MessageInput = (): React.ReactElement => {
   const refTextarea: React.RefObject<HTMLTextAreaElement> =
     useRef<HTMLTextAreaElement>(null);
 

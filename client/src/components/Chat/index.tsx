@@ -9,7 +9,9 @@ export interface IChatProps {
   className?: string;
 }
 
-const Chat: React.FunctionComponent<IChatProps> = ({ className }) => {
+const Chat: React.FunctionComponent<IChatProps> = ({
+  className,
+}): React.ReactElement => {
   const chatClasses: string = classNames([styles.chat, className]);
   return (
     <div className={chatClasses}>

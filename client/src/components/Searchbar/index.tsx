@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton } from '@mui/material';
 
-const Searchbar: React.FunctionComponent = () => {
+const Searchbar: React.FunctionComponent = (): React.ReactElement => {
   const [value, setValue]: [string, React.Dispatch<SetStateAction<string>>] =
     useState('');
   return (

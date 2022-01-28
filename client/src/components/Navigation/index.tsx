@@ -10,7 +10,7 @@ export interface INavigationProps {
 
 const Navigation: React.FunctionComponent<INavigationProps> = ({
   onShowDashboard,
-}) => {
+}): React.ReactElement => {
   return (
     <div className={styles.navigation}>
       <div className={styles.navigation__button}>

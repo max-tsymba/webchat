@@ -5,7 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { IconButton } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-const ChatHeader: React.FunctionComponent = () => {
+const ChatHeader: React.FunctionComponent = (): React.ReactElement => {
   return (
     <div className={styles.header}>
       <Avatar

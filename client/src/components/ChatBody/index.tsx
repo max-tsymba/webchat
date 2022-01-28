@@ -2,7 +2,7 @@ import React from 'react';
 import Message from '../Message';
 import styles from './styles.module.scss';
 
-const ChatBody: React.FunctionComponent = () => {
+const ChatBody: React.FunctionComponent = (): React.ReactElement => {
   return (
     <div
       className={styles.chat}

@@ -21,7 +21,7 @@ const Dashboard: React.FunctionComponent<IDasboardProps> = ({
   onShow = false,
   className,
   onShowDashboard,
-}) => {
+}): React.ReactElement => {
   const dashboardClasses: string = classNames([
     styles.overlay,
     onShow && styles.active,
