@@ -1,0 +1,50 @@
+.form {
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+.heading {
+  color: #222;
+  margin: 0 0 20px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.par {
+  color: rgb(123, 123, 123);
+  margin: 15px 0 30px;
+  font-size: 13px;
+  line-height: 160%;
+}
+
+.select {
+  width: 100%;
+  margin: 0 !important;
+  margin-bottom: 25px !important;
+}
+
+.codefield {
+  width: 25%;
+}
+
+.phonefield {
+  width: 65%;
+}
+
+.textFields {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.select__item {
+  span:nth-child(2) {
+    margin-left: auto;
+    opacity: 0.7;
+  }
+}
+
+.password {
+  width: 100%;
+  margin-bottom: 20px !important;
+}
