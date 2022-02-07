@@ -4,11 +4,18 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import FormWrapper from '../FormWrapper';
 
-const AuthBody: React.FunctionComponent = (): React.ReactElement => {
+export interface IAuthBodyProps {
+  refForm?: React.RefObject<HTMLFormElement>;
+}
+
+const AuthBody: React.FunctionComponent<IAuthBodyProps> = ({
+  refForm,
+}): React.ReactElement => {
   const [tabValue, setTabValue]: [
     number,
     React.Dispatch<SetStateAction<number>>,
   ] = useState<number>(1);
+
   return (
     <div className={styles.form}>
       <Tabs className={styles.tabs} value={tabValue}>
@@ -27,8 +34,12 @@ const AuthBody: React.FunctionComponent = (): React.ReactElement => {
       </Tabs>
 
       <FormWrapper>
-        {tabValue === 1 && <FormWrapper.Sign></FormWrapper.Sign>}
-        {tabValue === 2 && <FormWrapper.Login></FormWrapper.Login>}
+        {tabValue === 1 && (
+          <FormWrapper.Sign refForm={refForm}></FormWrapper.Sign>
+        )}
+        {tabValue === 2 && (
+          <FormWrapper.Login refForm={refForm}></FormWrapper.Login>
+        )}
       </FormWrapper>
     </div>
   );
