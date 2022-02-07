@@ -2,6 +2,7 @@ import UserDto, { IUserDto } from '../dtos/user.dto';
 import User from '../models/User/User';
 import { IUser } from '../models/User/User.interface';
 import bcrypt from 'bcrypt';
+import tokenService from './tokenService';
 
 class UserService {
   registration = async (
@@ -26,7 +27,13 @@ class UserService {
 
     const userDto: IUserDto = new UserDto(newUser);
 
+    const tokens: { accessToken: string; refreshToken: string } =
+      tokenService.generateTokens({ ...userDto });
+
+    await tokenService.saveTokens(newUser.id, tokens.refreshToken);
+
     return {
+      ...tokens,
       user: userDto,
     };
   };

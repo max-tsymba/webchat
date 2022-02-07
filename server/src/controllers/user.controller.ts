@@ -1,4 +1,3 @@
-import { IUserDto } from '../dtos/user.dto';
 import { IUser } from '../models/User/User.interface';
 import userService from '../service/userService';
 import { TArrowControllerFunction } from '../utils/types';
