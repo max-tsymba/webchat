@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import cors from 'cors';
 import messageRouter from './routes/message.router';
+import userRouter from './routes/auth.router';
 import { CallbackStartFunction } from './utils/types';
 import { pusher } from './configs/pusher.config';
 
@@ -40,6 +41,7 @@ db.once('open', () => {
 app.use(express.json());
 app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
 app.use('/api/messages', messageRouter);
+app.use('/api/auth', userRouter);
 
 const start: CallbackStartFunction = async () => {
   try {
