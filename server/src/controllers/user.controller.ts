@@ -14,7 +14,14 @@ class UserController {
         password,
       );
 
-      res.json(userData);
+      const maxAge: number = 30 * 24 * 60 * 60 * 1000;
+
+      res.cookie('refreshToken', userData.refreshToken, {
+        maxAge,
+        httpOnly: true,
+      });
+
+      return res.json(userData);
     } catch (e: unknown) {
       next(e);
     }
