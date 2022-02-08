@@ -37,6 +37,35 @@ class UserService {
       user: userDto,
     };
   };
+
+  login = async (phone: number, password: string) => {
+    const isUserExist: IUser = await User.findOne({ phone }).exec();
+
+    if (!isUserExist) throw new Error('User not found!');
+
+    const isPasswordEquals: boolean = await bcrypt.compare(
+      password,
+      isUserExist.password,
+    );
+
+    if (!isPasswordEquals) throw new Error('Password incorrect!');
+
+    const userDto: IUserDto = new UserDto(isUserExist);
+    const tokens: { accessToken: string; refreshToken: string } =
+      tokenService.generateTokens({ ...userDto });
+
+    await tokenService.saveTokens(userDto.id, tokens.refreshToken);
+
+    return {
+      ...tokens,
+      user: userDto,
+    };
+  };
+
+  logout = async (refreshToken: string) => {
+    const token: unknown = await tokenService.removeToken(refreshToken);
+    return token;
+  };
 }
 
 export default new UserService();

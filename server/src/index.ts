@@ -7,6 +7,7 @@ import messageRouter from './routes/message.router';
 import userRouter from './routes/auth.router';
 import { CallbackStartFunction } from './utils/types';
 import { pusher } from './configs/pusher.config';
+import coockieParser from 'cookie-parser';
 
 dotenv.config({ path: path.resolve(__dirname, 'configs', '.env') });
 
@@ -40,6 +41,7 @@ db.once('open', () => {
 
 app.use(express.json());
 app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
+app.use(coockieParser());
 app.use('/api/messages', messageRouter);
 app.use('/api/auth', userRouter);
 
