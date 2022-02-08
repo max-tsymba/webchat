@@ -33,8 +33,11 @@ const Sign: FunctionComponent<ISignFormProps> = ({
     Dispatch<SetStateAction<TUserSign>>,
   ] = useState({ country: '', code: '', phone: 0, username: '', password: '' });
 
+  // const [errors, setErrors] = useState({});
+
   const handleFormSubmit = (e: ChangeEvent<HTMLFormElement>): void => {
     e.preventDefault();
+
     console.log(userData);
   };
 
@@ -43,16 +46,20 @@ const Sign: FunctionComponent<ISignFormProps> = ({
     setUserData({ ...userData, country: data.country, code: data.code });
   };
 
-  const handleChangeInput =
-    (key: string) =>
-    (e: ChangeEvent<HTMLInputElement>): void => {
-      const value: string = e.target.value;
-      if (key === 'number') Number(value);
-      setUserData({ ...userData, [key]: value });
-    };
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>): void => {
+    const key: string = e.target.name;
+    const value: string = e.target.value;
+    if (key === 'number') Number(value);
+    setUserData({ ...userData, [key]: value });
+  };
 
   return (
-    <form className={bindClasses} ref={refForm} onSubmit={handleFormSubmit}>
+    <form
+      className={bindClasses}
+      ref={refForm}
+      onSubmit={handleFormSubmit}
+      noValidate
+    >
       <h3 className={styles.heading}>Sign up</h3>
       <p className={styles.par}>
         Please choose your country and enter your full phone number.
@@ -66,6 +73,7 @@ const Sign: FunctionComponent<ISignFormProps> = ({
           label="Country"
           defaultValue={''}
           className={styles.select}
+          required
         >
           {countryData.map((data: ICountryData, index: number) => (
             <MenuItem
@@ -85,13 +93,16 @@ const Sign: FunctionComponent<ISignFormProps> = ({
             variant="standard"
             value={codeValue}
             className={styles.codefield}
+            required
           />
 
           <TextField
             label="Phone number"
             variant="standard"
+            name="phone"
             className={styles.phonefield}
-            onChange={handleChangeInput('phone')}
+            onChange={handleChangeInput}
+            required
           />
         </div>
 
@@ -99,14 +110,18 @@ const Sign: FunctionComponent<ISignFormProps> = ({
           label="Username"
           variant="standard"
           className={styles.password}
-          onChange={handleChangeInput('username')}
+          name="username"
+          onChange={handleChangeInput}
+          required
         />
 
         <TextField
           label="Password"
           variant="standard"
           className={styles.password}
-          onChange={handleChangeInput('password')}
+          name="password"
+          onChange={handleChangeInput}
+          required
         />
 
         {children}
