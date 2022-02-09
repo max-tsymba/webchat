@@ -1,10 +1,3 @@
-import {
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  TextField,
-} from '@mui/material';
 import classNames from 'classnames';
 import React, {
   ChangeEvent,
@@ -14,6 +7,7 @@ import React, {
   SetStateAction,
   useState,
 } from 'react';
+import Control from '../Controls';
 import { countryData, ICountryData } from './data';
 import styles from './styles.module.scss';
 import { ISignFormProps, TUserSign } from './types';
@@ -33,8 +27,6 @@ const Sign: FunctionComponent<ISignFormProps> = ({
     Dispatch<SetStateAction<TUserSign>>,
   ] = useState({ country: '', code: '', phone: 0, username: '', password: '' });
 
-  // const [errors, setErrors] = useState({});
-
   const handleFormSubmit = (e: ChangeEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
@@ -49,6 +41,7 @@ const Sign: FunctionComponent<ISignFormProps> = ({
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>): void => {
     const key: string = e.target.name;
     const value: string = e.target.value;
+
     if (key === 'number') Number(value);
     setUserData({ ...userData, [key]: value });
   };
@@ -65,67 +58,52 @@ const Sign: FunctionComponent<ISignFormProps> = ({
         Please choose your country and enter your full phone number.
       </p>
 
-      <FormControl variant="standard">
-        <InputLabel id="select-label">Country</InputLabel>
-        <Select
-          labelId="select-label"
-          id="select"
-          label="Country"
-          defaultValue={''}
-          className={styles.select}
-          required
-        >
-          {countryData.map((data: ICountryData, index: number) => (
-            <MenuItem
-              value={index + 1}
-              key={data.code}
-              className={styles.select__item}
-              onClick={handleClickSelect(data)}
-            >
-              <span>{data.country}</span>
-            </MenuItem>
-          ))}
-        </Select>
+      <Control.Select
+        text="Country"
+        labelId="select-label"
+        id="select"
+        label="Country"
+        defaultValue={''}
+        className={styles.select}
+        listData={countryData}
+        onClick={handleClickSelect}
+      ></Control.Select>
 
-        <div className={styles.textFields}>
-          <TextField
-            label="Code"
-            variant="standard"
-            value={codeValue}
-            className={styles.codefield}
-            required
-          />
-
-          <TextField
-            label="Phone number"
-            variant="standard"
-            name="phone"
-            className={styles.phonefield}
-            onChange={handleChangeInput}
-            required
-          />
-        </div>
-
-        <TextField
-          label="Username"
+      <div className={styles.textFields}>
+        <Control.Input
+          label="Code"
           variant="standard"
-          className={styles.password}
-          name="username"
-          onChange={handleChangeInput}
-          required
+          value={codeValue}
+          className={styles.codefield}
+          name="code"
         />
 
-        <TextField
-          label="Password"
+        <Control.Input
+          label="Phone number"
           variant="standard"
-          className={styles.password}
-          name="password"
+          className={styles.phonefield}
+          name="phone"
           onChange={handleChangeInput}
-          required
         />
+      </div>
 
-        {children}
-      </FormControl>
+      <Control.Input
+        label="Username"
+        variant="standard"
+        className={styles.input}
+        name="username"
+        onChange={handleChangeInput}
+      />
+
+      <Control.Input
+        label="Password"
+        variant="standard"
+        className={styles.input}
+        name="password"
+        onChange={handleChangeInput}
+      />
+
+      {children}
     </form>
   );
 };
