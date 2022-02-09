@@ -8,6 +8,7 @@ import React, {
   useState,
 } from 'react';
 import Control from '../Controls';
+import Form from '../Form';
 import { countryData, ICountryData } from './data';
 import styles from './styles.module.scss';
 import { ISignFormProps, TUserSign } from './types';
@@ -47,11 +48,10 @@ const Sign: FunctionComponent<ISignFormProps> = ({
   };
 
   return (
-    <form
+    <Form
       className={bindClasses}
-      ref={refForm}
+      reference={refForm}
       onSubmit={handleFormSubmit}
-      noValidate
     >
       <h3 className={styles.heading}>Sign up</h3>
       <p className={styles.par}>
@@ -104,7 +104,7 @@ const Sign: FunctionComponent<ISignFormProps> = ({
       />
 
       {children}
-    </form>
+    </Form>
   );
 };
 
