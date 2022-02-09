@@ -7,6 +7,7 @@ import React, {
   SetStateAction,
   useState,
 } from 'react';
+import useForm from '../../hooks/useForm';
 import Control from '../Controls';
 import Form from '../Form';
 import { countryData, ICountryData } from './data';
@@ -19,33 +20,54 @@ const Sign: FunctionComponent<ISignFormProps> = ({
   refForm,
 }): ReactElement => {
   const bindClasses: string = classNames([className, styles.form]);
+  const initialState: TUserSign = {
+    country: '',
+    code: '',
+    phone: '',
+    username: '',
+    password: '',
+  };
 
   const [codeValue, setCodeValue]: [string, Dispatch<SetStateAction<string>>] =
     useState('');
 
-  const [userData, setUserData]: [
-    TUserSign,
-    Dispatch<SetStateAction<TUserSign>>,
-  ] = useState({ country: '', code: '', phone: 0, username: '', password: '' });
-
   const handleFormSubmit = (e: ChangeEvent<HTMLFormElement>): void => {
     e.preventDefault();
-
-    console.log(userData);
+    if (validate()) console.log('ok');
+    console.log(errors);
+    console.log(values);
   };
 
   const handleClickSelect = (data: ICountryData) => (): void => {
     setCodeValue(data.code);
-    setUserData({ ...userData, country: data.country, code: data.code });
+    setValues({ ...values, country: data.country, code: data.code });
   };
 
-  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>): void => {
-    const key: string = e.target.name;
-    const value: string = e.target.value;
+  const validate = (fieldValues = values) => {
+    const temp = {
+      ...errors,
+    };
+    if ('country' in fieldValues)
+      temp.country = fieldValues.country ? '' : 'This field is required!';
+    if ('code' in fieldValues)
+      temp.code = fieldValues.code ? '' : 'This field is required!';
+    if ('phone' in fieldValues)
+      temp.phone = fieldValues.phone ? '' : 'This field is required!';
+    if ('username' in fieldValues)
+      temp.username = fieldValues.username ? '' : 'This field is required!';
+    if ('password' in fieldValues)
+      temp.password = fieldValues.password ? '' : 'This field is required!';
 
-    if (key === 'number') Number(value);
-    setUserData({ ...userData, [key]: value });
+    setErrors({ ...temp });
+
+    if (fieldValues == values) return Object.values(temp).every((x) => x == '');
   };
+
+  const { values, setValues, errors, setErrors, handleChangeInput } = useForm(
+    initialState,
+    true,
+    validate,
+  );
 
   return (
     <Form
@@ -67,6 +89,8 @@ const Sign: FunctionComponent<ISignFormProps> = ({
         className={styles.select}
         listData={countryData}
         onClick={handleClickSelect}
+        error={Boolean(errors.country)}
+        helperText={String(errors.country)}
       ></Control.Select>
 
       <div className={styles.textFields}>
@@ -76,6 +100,8 @@ const Sign: FunctionComponent<ISignFormProps> = ({
           value={codeValue}
           className={styles.codefield}
           name="code"
+          error={Boolean(errors.code)}
+          helperText={String(errors.code)}
         />
 
         <Control.Input
@@ -84,6 +110,8 @@ const Sign: FunctionComponent<ISignFormProps> = ({
           className={styles.phonefield}
           name="phone"
           onChange={handleChangeInput}
+          error={Boolean(errors.phone)}
+          helperText={String(errors.phone)}
         />
       </div>
 
@@ -93,6 +121,8 @@ const Sign: FunctionComponent<ISignFormProps> = ({
         className={styles.input}
         name="username"
         onChange={handleChangeInput}
+        error={Boolean(errors.username)}
+        helperText={String(errors.username)}
       />
 
       <Control.Input
@@ -101,6 +131,8 @@ const Sign: FunctionComponent<ISignFormProps> = ({
         className={styles.input}
         name="password"
         onChange={handleChangeInput}
+        error={Boolean(errors.password)}
+        helperText={String(errors.password)}
       />
 
       {children}

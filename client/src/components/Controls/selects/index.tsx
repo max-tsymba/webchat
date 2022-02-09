@@ -1,9 +1,10 @@
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@mui/material';
 import classNames from 'classnames';
 import React, { FunctionComponent, ReactElement } from 'react';
 import { ISelectProps } from './types';
 import styles from './styles.module.scss';
 import { ICountryData } from 'src/components/Sign/data';
+import { isDefineString } from '../../../utils/functions';
 
 const Selector: FunctionComponent<ISelectProps> = ({
   text,
@@ -16,10 +17,12 @@ const Selector: FunctionComponent<ISelectProps> = ({
   children,
   listData,
   onClick,
+  error,
+  helperText
 }): ReactElement => {
   const SelectClasses: string = classNames([styles.select, className]);
   return (
-    <FormControl variant="standard" className={SelectClasses}>
+    <FormControl variant="standard" className={SelectClasses} error={error}>
       <InputLabel id="select-label">{text}</InputLabel>
       <Select
         labelId={labelId}
@@ -40,6 +43,7 @@ const Selector: FunctionComponent<ISelectProps> = ({
         ))}
         {children}
       </Select>
+      {helperText && <FormHelperText>{isDefineString(helperText)}</FormHelperText>}
     </FormControl>
   );
 };

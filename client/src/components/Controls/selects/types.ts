@@ -11,4 +11,6 @@ export interface ISelectProps {
   children?: string | ReactNode;
   listData?: any;
   onClick?: (data: any) => () => void;
+  error?: boolean;
+  helperText?: string;
 }

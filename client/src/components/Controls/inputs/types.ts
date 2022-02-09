@@ -8,4 +8,6 @@ export interface IInputProps {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
   name?: string;
+  error?: boolean;
+  helperText?: string;
 }

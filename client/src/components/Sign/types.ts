@@ -9,7 +9,7 @@ export interface ISignFormProps {
 export type TUserSign = {
   country: string;
   code: string;
-  phone: number;
+  phone: string;
   username: string;
   password: string;
 };
