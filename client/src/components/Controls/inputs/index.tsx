@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import React, { FunctionComponent, ReactElement } from 'react';
 import { IInputProps } from './types';
 import styles from './styles.module.scss';
-import {isDefineString} from '../../../utils/functions'
 
 const Input: FunctionComponent<IInputProps> = ({
   label,
@@ -14,7 +13,7 @@ const Input: FunctionComponent<IInputProps> = ({
   required,
   name,
   error,
-  helperText
+  helperText,
 }): ReactElement => {
   const TextFieldClasses = classNames([styles.input, className]);
   return (
@@ -27,7 +26,7 @@ const Input: FunctionComponent<IInputProps> = ({
       onChange={onChange}
       required={required}
       error={error}
-      helperText={helperText && isDefineString(helperText)}
+      helperText={helperText}
     />
   );
 };

@@ -1,17 +1,18 @@
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
+import { IRegData } from 'src/utils/interfaces';
 
 type TStateValue = [
-  values: Record<string, unknown>,
-  setValues: Dispatch<SetStateAction<Record<string, unknown>>>,
+  values: IRegData,
+  setValues: Dispatch<SetStateAction<IRegData>>,
 ];
 
 const useForm = (
-  initialState: Record<string, unknown>,
+  initialState: IRegData,
   validateOnChange = false,
-  validate: any,
+  validate?: any,
 ) => {
   const [values, setValues]: TStateValue = useState(initialState);
-  const [errors, setErrors]: TStateValue = useState({});
+  const [errors, setErrors] = useState<Partial<IRegData>>({});
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>): void => {
     const key: string = e.target.name;

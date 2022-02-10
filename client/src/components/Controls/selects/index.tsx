@@ -10,7 +10,6 @@ import React, { FunctionComponent, ReactElement } from 'react';
 import { ISelectProps } from './types';
 import styles from './styles.module.scss';
 import { ICountryData } from 'src/components/Forms/FormRegistration/data';
-import { isDefineString } from '../../../utils/functions';
 
 const Selector: FunctionComponent<ISelectProps> = ({
   text,
@@ -49,9 +48,7 @@ const Selector: FunctionComponent<ISelectProps> = ({
         ))}
         {children}
       </Select>
-      {helperText && (
-        <FormHelperText>{isDefineString(helperText)}</FormHelperText>
-      )}
+      {helperText && <FormHelperText>{helperText}</FormHelperText>}
     </FormControl>
   );
 };
