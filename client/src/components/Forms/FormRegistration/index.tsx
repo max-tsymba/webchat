@@ -11,10 +11,18 @@ import { IRegData } from '../../../utils/interfaces';
 import useForm from '../../../hooks/useForm';
 import Control from '../../Controls';
 import Form from '../../Forms/FormWrapper';
-import { validateForm } from '../Validation';
+import { validator } from '../Validation';
 import { countryData, ICountryData } from './data';
 import styles from './styles.module.scss';
 import { ISignFormProps } from './types';
+
+const initialState: IRegData = {
+  country: '',
+  code: '',
+  phone: '',
+  username: '',
+  password: '',
+};
 
 const RegistrationForm: FunctionComponent<ISignFormProps> = ({
   children,
@@ -22,13 +30,6 @@ const RegistrationForm: FunctionComponent<ISignFormProps> = ({
   refForm,
 }): ReactElement => {
   const bindClasses: string = classNames([className, styles.form]);
-  const initialState: IRegData = {
-    country: '',
-    code: '',
-    phone: '',
-    username: '',
-    password: '',
-  };
 
   const { values, setValues, errors, setErrors, handleChangeInput } =
     useForm(initialState);
@@ -43,7 +44,7 @@ const RegistrationForm: FunctionComponent<ISignFormProps> = ({
 
   const handleFormSubmit = (e: ChangeEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    const { checkValid, errors } = validateForm(values);
+    const { checkValid, errors } = validator.registration(values);
     setErrors(errors);
     console.log(checkValid);
   };

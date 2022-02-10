@@ -6,11 +6,7 @@ type TStateValue = [
   setValues: Dispatch<SetStateAction<IRegData>>,
 ];
 
-const useForm = (
-  initialState: IRegData,
-  validateOnChange = false,
-  validate?: any,
-) => {
+const useForm = (initialState: IRegData) => {
   const [values, setValues]: TStateValue = useState(initialState);
   const [errors, setErrors] = useState<Partial<IRegData>>({});
 
@@ -18,8 +14,6 @@ const useForm = (
     const key: string = e.target.name;
     const value: string = e.target.value;
     setValues({ ...values, [key]: value });
-
-    if (validateOnChange) validate({ [key]: value });
   };
 
   return {
