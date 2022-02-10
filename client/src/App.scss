@@ -2,14 +2,3 @@
   height: 100vh;
   display: flex;
 }
-
-.login {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-
-  &__body {
-    flex: 0.65;
-    background-color: #212121;
-  }
-}

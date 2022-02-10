@@ -1,0 +1,14 @@
+.main__header {
+  flex: 0.35;
+}
+
+.main__body {
+  flex: 0.65;
+  background-color: #212121;
+}
+
+.main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

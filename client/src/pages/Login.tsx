@@ -1,14 +1,11 @@
 import React from 'react';
-import AuthForm from '../components/AuthForm';
-import LoginHeader from '../components/LoginHeader';
+import Auth from '../components/Auth';
 
 const Login: React.FunctionComponent = (): React.ReactElement => {
   return (
-    <div className="login">
-      <LoginHeader />
-      <div className="login__body"></div>
-      <AuthForm />
-    </div>
+    <Auth.Body>
+      <Auth.Form />
+    </Auth.Body>
   );
 };
 
