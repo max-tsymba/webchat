@@ -10,7 +10,7 @@ import React, {
 import { IRegData } from '../../../utils/interfaces';
 import useForm from '../../../hooks/useForm';
 import Control from '../../Controls';
-import Form from '../../Forms/FormWrapper';
+import Form from '../Form';
 import { validator } from '../Validation';
 import { countryData, ICountryData } from './data';
 import styles from './styles.module.scss';

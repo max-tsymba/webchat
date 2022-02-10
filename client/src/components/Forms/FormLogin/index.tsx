@@ -4,7 +4,7 @@ import Control from '../../../components/Controls';
 import { ILogData } from '../../../utils/interfaces';
 import styles from './styles.module.scss';
 import { ILoginProps } from './types';
-import Form from '../FormWrapper';
+import Form from '../Form';
 import useForm from '../../../hooks/useForm';
 import { validator } from '../Validation';
 
@@ -13,7 +13,7 @@ const initialState: ILogData = {
   password: '',
 };
 
-const Login: React.FunctionComponent<ILoginProps> = ({
+const LoginForm: React.FunctionComponent<ILoginProps> = ({
   children,
   className,
   refForm,
@@ -62,4 +62,4 @@ const Login: React.FunctionComponent<ILoginProps> = ({
   );
 };
 
-export default Login;
+export default LoginForm;

@@ -2,7 +2,8 @@ import React, { SetStateAction, useState } from 'react';
 import styles from './styles.module.scss';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import FormWrapper from '../FormWrapper';
+import RegistrationForm from '../Forms/FormRegistration';
+import LoginForm from '../Forms/FormLogin';
 
 export interface IAuthBodyProps {
   refForm?: React.RefObject<HTMLFormElement>;
@@ -33,14 +34,8 @@ const AuthBody: React.FunctionComponent<IAuthBodyProps> = ({
         />
       </Tabs>
 
-      <FormWrapper>
-        {tabValue === 1 && (
-          <FormWrapper.Sign refForm={refForm}></FormWrapper.Sign>
-        )}
-        {tabValue === 2 && (
-          <FormWrapper.Login refForm={refForm}></FormWrapper.Login>
-        )}
-      </FormWrapper>
+      {tabValue === 1 && <RegistrationForm refForm={refForm} />}
+      {tabValue === 2 && <LoginForm refForm={refForm} />}
     </div>
   );
 };
