@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.module.scss';
 import Sign from '../Forms/FormRegistration';
-import Login from '../Login';
+import Login from '../Forms/FormLogin';
 
 export interface IFormWrapperProps {
   children?: React.ReactNode | string;

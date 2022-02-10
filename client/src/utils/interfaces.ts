@@ -6,3 +6,9 @@ export interface IRegData {
   username: string;
   password: string;
 }
+
+// Login User Interface
+export interface ILogData {
+  phone: string;
+  password: string;
+}

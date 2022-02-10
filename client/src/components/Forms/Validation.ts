@@ -1,9 +1,9 @@
 import { isObjectEmpty } from '../../utils/functions';
-import { IRegData } from '../../utils/interfaces';
+import { ILogData, IRegData } from '../../utils/interfaces';
 
 type TValiate = {
   checkValid: boolean;
-  errors: Partial<IRegData>;
+  errors: Partial<IRegData> | Partial<ILogData>;
 };
 
 export const validator = {
@@ -31,9 +31,25 @@ export const validator = {
       errors,
     };
   },
+
+  login: (initialObject: ILogData): TValiate => {
+    const errors = {} as Partial<ILogData>;
+
+    phoneValidator(initialObject.phone, errors);
+
+    passwordValidator(initialObject.password, errors);
+
+    return {
+      checkValid: isObjectEmpty(errors),
+      errors,
+    };
+  },
 };
 
-export function phoneValidator(phone: string, error: Partial<IRegData>): void {
+export function phoneValidator(
+  phone: string,
+  error: Record<string, unknown>,
+): void {
   const regularExpression = /^[0-9]+$/;
   const phoneLength = 10;
 
@@ -45,12 +61,12 @@ export function phoneValidator(phone: string, error: Partial<IRegData>): void {
 
 export function passwordValidator(
   password: string,
-  error: Partial<IRegData>,
+  error: Record<string, unknown>,
 ): void {
   const regularExpression = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
   const passwordLength = 8;
 
-  if (!password) error.password = 'This.field is required!';
+  if (!password) error.password = 'This field is required!';
   else if (!regularExpression.test(password))
     error.password = 'The password must contain letters and numbers';
   else if (password.length < passwordLength)

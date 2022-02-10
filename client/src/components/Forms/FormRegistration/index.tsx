@@ -46,7 +46,7 @@ const RegistrationForm: FunctionComponent<ISignFormProps> = ({
     e.preventDefault();
     const { checkValid, errors } = validator.registration(values);
     setErrors(errors);
-    console.log(checkValid);
+    console.log({ checkValid, values });
   };
 
   return (
