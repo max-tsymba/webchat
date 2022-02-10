@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactElement } from 'react';
 import styles from './styles.module.scss';
 import bg from '../../../assets/img/bg.png';
-import { IAuthBodyProps } from 'src/components/AuthBody';
+import { IAuthBodyProps } from './types';
 
 const AuthBody: FunctionComponent<IAuthBodyProps> = ({
   children,

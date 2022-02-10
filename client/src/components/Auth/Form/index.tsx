@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import Auth from '..';
-import AuthBody from '../../AuthBody';
 import styles from './styles.module.scss';
 
 const AuthForm: React.FunctionComponent = (): React.ReactElement => {
@@ -16,7 +15,7 @@ const AuthForm: React.FunctionComponent = (): React.ReactElement => {
   return (
     <div className={styles.main}>
       <Auth.Header onSubmit={submitForm} title="Webchat" />
-      <AuthBody refForm={referenceForm} />
+      <Auth.Tabs reference={referenceForm} />
     </div>
   );
 };

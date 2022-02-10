@@ -2,20 +2,17 @@ import React, { SetStateAction, useState } from 'react';
 import styles from './styles.module.scss';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import RegistrationForm from '../Forms/FormRegistration';
-import LoginForm from '../Forms/FormLogin';
+import RegistrationForm from '../../Forms/FormRegistration';
+import LoginForm from '../../Forms/FormLogin';
+import { IAuthTabsProps } from './types';
 
-export interface IAuthBodyProps {
-  refForm?: React.RefObject<HTMLFormElement>;
-}
-
-const AuthBody: React.FunctionComponent<IAuthBodyProps> = ({
-  refForm,
+const AuthTabs: React.FunctionComponent<IAuthTabsProps> = ({
+  reference,
 }): React.ReactElement => {
   const [tabValue, setTabValue]: [
     number,
     React.Dispatch<SetStateAction<number>>,
-  ] = useState<number>(1);
+  ] = useState(1);
 
   return (
     <div className={styles.form}>
@@ -34,10 +31,10 @@ const AuthBody: React.FunctionComponent<IAuthBodyProps> = ({
         />
       </Tabs>
 
-      {tabValue === 1 && <RegistrationForm refForm={refForm} />}
-      {tabValue === 2 && <LoginForm refForm={refForm} />}
+      {tabValue === 1 && <RegistrationForm refForm={reference} />}
+      {tabValue === 2 && <LoginForm refForm={reference} />}
     </div>
   );
 };
 
-export default AuthBody;
+export default AuthTabs;
