@@ -7,14 +7,14 @@ import React, {
   SetStateAction,
   useState,
 } from 'react';
-import useForm from '../../hooks/useForm';
-import Control from '../Controls';
-import Form from '../Form';
+import useForm from '../../../hooks/useForm';
+import Control from '../../Controls';
+import Form from '../../Forms/FormWrapper';
 import { countryData, ICountryData } from './data';
 import styles from './styles.module.scss';
 import { ISignFormProps, TUserSign } from './types';
 
-const Sign: FunctionComponent<ISignFormProps> = ({
+const RegistrationForm: FunctionComponent<ISignFormProps> = ({
   children,
   className,
   refForm,
@@ -33,9 +33,10 @@ const Sign: FunctionComponent<ISignFormProps> = ({
 
   const handleFormSubmit = (e: ChangeEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    if (validate()) console.log('ok');
-    console.log(errors);
-    console.log(values);
+    // if (validate()) console.log('ok');
+    // console.log(errors);
+    // console.log(values);
+    console.log(validate(values));
   };
 
   const handleClickSelect = (data: ICountryData) => (): void => {
@@ -43,24 +44,29 @@ const Sign: FunctionComponent<ISignFormProps> = ({
     setValues({ ...values, country: data.country, code: data.code });
   };
 
-  const validate = (fieldValues = values) => {
-    const temp = {
-      ...errors,
-    };
-    if ('country' in fieldValues)
-      temp.country = fieldValues.country ? '' : 'This field is required!';
-    if ('code' in fieldValues)
-      temp.code = fieldValues.code ? '' : 'This field is required!';
-    if ('phone' in fieldValues)
-      temp.phone = fieldValues.phone ? '' : 'This field is required!';
-    if ('username' in fieldValues)
-      temp.username = fieldValues.username ? '' : 'This field is required!';
-    if ('password' in fieldValues)
-      temp.password = fieldValues.password ? '' : 'This field is required!';
+  // const validate = (fieldValues = values) => {
+  //   const temp = {
+  //     ...errors,
+  //   };
+  //   if ('country' in fieldValues)
+  //     temp.country = fieldValues.country ? '' : 'This field is required!';
+  //   if ('code' in fieldValues)
+  //     temp.code = fieldValues.code ? '' : 'This field is required!';
+  //   if ('phone' in fieldValues)
+  //     temp.phone = fieldValues.phone ? '' : 'This field is required!';
+  //   if ('username' in fieldValues)
+  //     temp.username = fieldValues.username ? '' : 'This field is required!';
+  //   if ('password' in fieldValues)
+  //     temp.password = fieldValues.password ? '' : 'This field is required!';
 
-    setErrors({ ...temp });
+  //   setErrors({ ...temp });
 
-    if (fieldValues == values) return Object.values(temp).every((x) => x == '');
+  //   if (fieldValues == values) return Object.values(temp).every((x) => x == '');
+  // };
+
+  const validate = (field: any) => {
+    setErrors({ code: 'Error' });
+    return field;
   };
 
   const { values, setValues, errors, setErrors, handleChangeInput } = useForm(
@@ -140,4 +146,4 @@ const Sign: FunctionComponent<ISignFormProps> = ({
   );
 };
 
-export default Sign;
+export default RegistrationForm;

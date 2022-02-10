@@ -1,20 +1,24 @@
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
 
 type TStateValue = [
-   values:  Record<string, unknown>,
-   setValues: Dispatch<SetStateAction<Record<string, unknown>>>
-]
+  values: Record<string, unknown>,
+  setValues: Dispatch<SetStateAction<Record<string, unknown>>>,
+];
 
-const useForm = (initialState: Record<string, unknown>, validateOnChange =false, validate: any) => {
+const useForm = (
+  initialState: Record<string, unknown>,
+  validateOnChange = false,
+  validate: any,
+) => {
   const [values, setValues]: TStateValue = useState(initialState);
-  const [errors, setErrors]: TStateValue = useState({})
+  const [errors, setErrors]: TStateValue = useState({});
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>): void => {
     const key: string = e.target.name;
     const value: string = e.target.value;
-    setValues({...values, [key]: value})
+    setValues({ ...values, [key]: value });
 
-    if(validateOnChange) validate({[key]: value})
+    if (validateOnChange) validate({ [key]: value });
   };
 
   return {
@@ -22,7 +26,7 @@ const useForm = (initialState: Record<string, unknown>, validateOnChange =false,
     setValues,
     errors,
     setErrors,
-    handleChangeInput
+    handleChangeInput,
   };
 };
 
